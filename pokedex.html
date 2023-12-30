@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .pokedex {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 30px;
+            width: 300px;
+        }
+
+        .pokedex-title {
+            color: #e60012;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .pokemon-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .pokemon-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 120px;
+            background-color: #f5f5f5;
+        }
+
+        .pokemon-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pokemon-card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="pokedex">
+        <h1 class="pokedex-title">Pokedex</h1>
+        <div class="pokemon-list" id="pokemonList"></div>
+    </div>
+    <script>
+        const pokemonList = document.getElementById('pokemonList');
+
+        // Dados simulados de Pokémon
+        const pokemons = [
+            { id: 1, name: 'Bulbasaur', type: 'Grass/Poison' },
+            { id: 4, name: 'Charmander', type: 'Fire' },
+            { id: 7, name: 'Squirtle', type: 'Water' },
+            // Adicione mais Pokémon conforme necessário
+        ];
+
+        // Função para exibir os Pokémon na Pokedex
+        function displayPokemon() {
+            pokemons.forEach(pokemon => {
+                const card = document.createElement('div');
+                card.classList.add('pokemon-card');
+                card.innerHTML = `<p>${pokemon.name}</p><p>Type: ${pokemon.type}</p>`;
+                card.addEventListener('click', () => showPokemonDetails(pokemon));
+                pokemonList.appendChild(card);
+            });
+        }
+
+        // Função para exibir detalhes de um Pokémon específico
+        function showPokemonDetails(pokemon) {
+            alert(`ID: ${pokemon.id}\nName: ${pokemon.name}\nType: ${pokemon.type}`);
+        }
+
+        // Chame a função para exibir os Pokémon na inicialização
+        displayPokemon();
+    </script>
+</body>
+</html>
